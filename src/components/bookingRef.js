@@ -7,10 +7,29 @@
 import React from 'react';
 import Accordion from 'react-bootstrap/Accordion';
 import Card from 'react-bootstrap/Card';
-
+import { Link } from 'react-router-dom';
+import Button from 'react-bootstrap/Button';
+import axios from 'axios';
 
 //Creates header class and extends into component
 export class BookingRef extends React.Component {
+
+    constructor(){
+    super();
+
+    this.DeleteBooking = this.DeleteBooking.bind(this);
+
+}
+
+DeleteBooking(){
+        console.log("Delete: "+this.props.booking._id);
+
+        axios.delete("http://localhost:4000/api/booking/"+this.props.booking._id)
+        .then(()=>{
+            this.props.ReloadData();
+        })
+        .catch()
+    }
 
     render() {
         return (
@@ -32,6 +51,8 @@ export class BookingRef extends React.Component {
                                 <p>{this.props.booking.NoGuests}</p>
                             </Card.Body>
                         </Accordion.Collapse>
+                        <Link to={"/edit/"+this.props.booking._id} className="btn btn-primary">Edit</Link>
+                        <Button variant="danger" onClick={this.DeleteBooking}>Cancel</Button>
                     </Card>
                 </Accordion>
 

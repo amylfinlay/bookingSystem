@@ -3,6 +3,8 @@ const app = express()
 const port = 4000
 const cors = require('cors');
 const bodyParser = require("body-parser");
+const mongoose = require('mongoose');
+const path = require('path');
 
 app.use(cors());
 app.use(function(req, res, next) { 
@@ -12,39 +14,61 @@ app.use(function(req, res, next) {
     "Origin, X-Requested-With, Content-Type, Accept"); 
     next(); });
 
+app.use(express.static(path.join(__dirname, '../build')));
+app.use('/static', express.static(path.join(__dirname, 'build//static')));
+
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
 
 // parse application/json
 app.use(bodyParser.json())
 
+const myConnectionString = 'mongodb+srv://amy_admin:AmyFinlay@cluster0.qmqwz.mongodb.net/booking?retryWrites=true&w=majority';
+mongoose.connect(myConnectionString, {useNewUrlParser: true});
+
+const Schema = mongoose.Schema
+
+var bookingSchema = new Schema({
+    Name: String,
+    Occassion: String,
+    Date: String,
+    CostPerPerson: String,
+    NoGuests: String
+});
+
+var BookingModel = mongoose.model("booking", bookingSchema);
+
 app.get('/api/booking', (req, res)=> {
 
-    const mybooking = [ {
-        "Name": "Jane Doe",
-        "Occassion": "Wedding Party",
-        "Date" : "23/04/2021",
-        "CostPerPerson" : "100",
-        "NoGuests" : "300"
-        },
-        {
-        "Name": "John Doe",
-        "Occassion": "30th Birthday",
-        "Date" : "15/06/2021",
-        "CostPerPerson" : "30",
-        "NoGuests" : "120"
-        },
-        {
-        "Name": "Bord Bia",
-        "Occassion": "Food Festival",
-        "Date" : "02/02/2021",
-        "CostPerPerson" : "15",
-        "NoGuests" : "200"
-        }];
+    BookingModel.find((err, data)=>{
+        res.json(data);
+    })
+})
 
-    res.status(200).json ({
-    message : "Connection Successful",
-    booking:mybooking});
+app.get('/api/booking/:id', (req,res)=>{
+    console.log(req.params.id);
+
+    BookingModel.findById(req.params.id, (err, data) =>{
+        res.json(data);
+    })
+})
+
+app.put('/api/booking/:id', (req, res,) => {
+    console.log("Update Booking:"+req.params.id);
+    console.log(req.body);
+
+    BookingModel.findByIdAndUpdate(req.params.id,req.body, {new:true},
+        (err,data)=>{
+            res.send(data);
+        })
+})
+
+app.delete('/api/booking/:id', (req, res) => {
+    console.log("Delete Booking: " +req.params.id);
+
+    BookingModel.findByIdAndDelete(req.params.id,(err, data)=>{
+        res.send(data);
+    })
 })
 
 app.post('/api/booking', (req, res)=>{
@@ -54,6 +78,20 @@ app.post('/api/booking', (req, res)=>{
     console.log(req.body.Date);
     console.log(req.body.CostPerPerson);
     console.log(req.body.NoGuests);
+
+    BookingModel.create({
+        Name:req.body.Name,
+        Occassion:req.body.Occassion,
+        Date:req.body.Date,
+        CostPerPerson:req.body.CostPerPerson,
+        NoGuests:req.body.NoGuests
+    })
+
+    res.send('Booking Confirmed');
+})
+
+app.get('*', (req,res)=>{
+    res.sendFile(path.join(__dirname+'/../build/index.html'));
 })
 
 app.listen(port, () => {

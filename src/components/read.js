@@ -11,6 +11,12 @@ import { Booking } from './booking';
 //Creates header class and extends into component
 export class Read extends React.Component {
 
+    constructor(){
+        super();
+
+        this.ReloadData = this.ReloadData.bind(this);
+    }
+
     state = {
         booking: []           
     };
@@ -19,7 +25,18 @@ export class Read extends React.Component {
         axios.get('http://localhost:4000/api/booking')
         .then(
             (response) => {
-            this.setState({ booking: response.data.booking})
+            this.setState({ booking: response.data})
+        })
+        .catch((error) => {
+            console.log(error)
+        });
+    }
+
+    ReloadData(){
+        axios.get('http://localhost:4000/api/booking')
+        .then(
+            (response) => {
+            this.setState({ booking: response.data})
         })
         .catch((error) => {
             console.log(error)
@@ -31,7 +48,7 @@ export class Read extends React.Component {
             <div>
                 {/**Displays text */} 
                 <h1>View our upcoming events...</h1>
-                <Booking booking={this.state.booking}></Booking>
+                <Booking booking={this.state.booking} ReloadData={this.ReloadData}></Booking>
             </div>
         );
     }

@@ -15,6 +15,7 @@ import logo from './logo.png';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'; //imports routing
 import { Read } from './components/read';
 import { Create } from './components/create';
+import { Edit } from './components/edit';
 
 //Class calls component file
 class App extends Component {
@@ -37,8 +38,9 @@ class App extends Component {
           {/**Calls each component from the file and displays on seperate webpages: home, read and create*/}
           <Switch>
             <Route path='/' component={Contents} exact />
-            <Route path='/read' component={Read} exact />
-            <Route path='/create' component={Create} exact />
+            <Route path='/read' component={Read} />
+            <Route path='/create' component={Create} />
+            <Route path='/edit/:id' component={Edit} />
           </Switch>
 
         </div>
