@@ -4,6 +4,7 @@
  * Read UpComing Events
  */
 
+import axios from 'axios';
 import React from 'react';
 import { Booking } from './booking';
 
@@ -11,30 +12,19 @@ import { Booking } from './booking';
 export class Read extends React.Component {
 
     state = {
-        booking: [
-            {
-            "Name": "Jane Doe",
-            "Occassion": "Wedding Party",
-            "Date" : "23/04/2021",
-            "CostPerPerson" : "100",
-            "NoGuests" : "300"
-            },
-            {
-            "Name": "John Doe",
-            "Occassion": "30th Birthday",
-            "Date" : "15/06/2021",
-            "CostPerPerson" : "30",
-            "NoGuests" : "120"
-            },
-            {
-            "Name": "Bord Bia",
-            "Occassion": "Food Festival",
-            "Date" : "02/02/2021",
-            "CostPerPerson" : "15",
-            "NoGuests" : "200"
-            }
-        ]
+        booking: []           
     };
+
+    componentDidMount() {
+        axios.get('http://localhost:4000/api/booking')
+        .then(
+            (response) => {
+            this.setState({ booking: response.data.booking})
+        })
+        .catch((error) => {
+            console.log(error)
+        });
+    }
 
     render() {
         return (

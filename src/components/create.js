@@ -5,6 +5,7 @@
  */
 
 import React from 'react';
+import axios from 'axios';
 
 //Creates header class and extends into component
 export class Create extends React.Component {
@@ -60,8 +61,23 @@ export class Create extends React.Component {
 
     onSubmit(e) {
         e.preventDefault();
-        alert("Name: "+this.state.Name +" " +this.state.Occassion);
+        alert("Name: "+this.state.Name +" " +this.state.Occassion+ " "+this.state.Date+" "+this.state.CostPerPerson+
+        " "+this.state.NoGuests);
 
+        const newBooking = {
+        Name: this.state.Name,
+        Occassion: this.state.Occassion,
+        Date: this.state.Date,
+        CostPerPerson: this.state.CostPerPerson,
+        NoGuests: this.state.NoGuests
+        }
+        axios.post('http://localhost:4000/api/booking', newBooking)
+        .then((res)=>{
+        console.log(res);
+        })
+        .catch((err)=>{
+            console.log(err);
+        });
     }
 
     render() {
