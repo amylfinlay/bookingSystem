@@ -1,14 +1,12 @@
 /**
  * Name: Amy Finlay
  * ID: G00360784
- * Booking
+ * BookingRef
  */
 
 import React from 'react';
-import Accordion from 'react-bootstrap/Accordion';
-import Card from 'react-bootstrap/Card';
+import { Card, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import Button from 'react-bootstrap/Button';
 import axios from 'axios';
 
 //Creates header class and extends into component
@@ -34,28 +32,21 @@ DeleteBooking(){
     render() {
         return (
             <div>
-                <h1>This is my bookingref component</h1>
 
-                <Accordion>
-                    <Card>
-                        <Card.Header>
-                            <Accordion.Toggle as={Card.Header} eventKey="0">
-                            {this.props.booking.Occassion}
-      </Accordion.Toggle>
-                        </Card.Header>
-                        <Accordion.Collapse eventKey="0">
-                            <Card.Body>
-                                <p>{this.props.booking.Name}</p>
-                                <p>{this.props.booking.Date}</p>
-                                <p>{this.props.booking.CostPerPerson}</p>
-                                <p>{this.props.booking.NoGuests}</p>
+
+            {/** Displays card which contains information about each event that has been added */}
+                    <Card style={{backgroundColor: '#343A40',
+                                    margin: '15px 50px', color: 'white', border: '0px'}}>
+                        <Card.Header as="h4"> {this.props.booking.Occassion}</Card.Header>
+                            <Card.Body style={{backgroundColor: '#E9ECEF', color: '#343A40'}}>
+                                <Card.Title>{this.props.booking.Name}</Card.Title>
+                                <Card.Text><b>Date: </b>{this.props.booking.Date}</Card.Text>
+                                <Card.Text><b>Admission Fee:</b> <b>€</b>{this.props.booking.CostPerPerson}</Card.Text>
+                                <Card.Text><b>Capacity: </b>{this.props.booking.NoGuests}</Card.Text>
+                                <Link style={{padding: '5px 30px', margin: '5px'}} to={"/edit/"+this.props.booking._id} className="btn btn-primary">Edit Event</Link>
+                        <Button style={{padding: '5px 30px', margin: '5px', backgroundColor: '#C4311A'}} onClick={this.DeleteBooking}><b>Cancel Event</b></Button>
                             </Card.Body>
-                        </Accordion.Collapse>
-                        <Link to={"/edit/"+this.props.booking._id} className="btn btn-primary">Edit</Link>
-                        <Button variant="danger" onClick={this.DeleteBooking}>Cancel</Button>
-                    </Card>
-                </Accordion>
-
+                            </Card>
             </div>
         );
     }

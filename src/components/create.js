@@ -6,6 +6,10 @@
 
 import React from 'react';
 import axios from 'axios';
+import { Carousel } from 'react-bootstrap';
+import bar from './images/bar.jpg';
+import concert from './images/concert.jpg';
+import foodfest from './images/foodfest.jpg';
 
 //Creates header class and extends into component
 export class Create extends React.Component {
@@ -13,6 +17,7 @@ export class Create extends React.Component {
     constructor() {
         super();
 
+        //contains binding for each component
         this.onSubmit = this.onSubmit.bind(this);
         this.onChangeName = this.onChangeName.bind(this);
         this.onChangeOccassion = this.onChangeOccassion.bind(this);
@@ -20,6 +25,7 @@ export class Create extends React.Component {
         this.onChangeCostPerPerson = this.onChangeCostPerPerson.bind(this);
         this.onChangeNoGuests = this.onChangeNoGuests.bind(this);
 
+        //defines each state
         this.state = {
             Name: '',
             Occassion: '',
@@ -29,104 +35,126 @@ export class Create extends React.Component {
         }
     }
 
+    //Contains the event to change different values
     onChangeName(e) {
         this.setState({
             Name: e.target.value
         });
     }
 
-    onChangeOccassion(e){
+    onChangeOccassion(e) {
         this.setState({
             Occassion: e.target.value
         });
     }
 
-    onChangeDate (e){
+    onChangeDate(e) {
         this.setState({
             Date: e.target.value
         });
     }
 
-    onChangeCostPerPerson (e){
+    onChangeCostPerPerson(e) {
         this.setState({
             CostPerPerson: e.target.value
         });
     }
 
-    onChangeNoGuests (e){
+    onChangeNoGuests(e) {
         this.setState({
             NoGuests: e.target.value
         });
     }
-
+    //Submit button
     onSubmit(e) {
         e.preventDefault();
-        alert("Name: "+this.state.Name +" " +this.state.Occassion+ " "+this.state.Date+" "+this.state.CostPerPerson+
-        " "+this.state.NoGuests);
-
+        alert("Your booking has been confirmed!")
         const newBooking = {
-        Name: this.state.Name,
-        Occassion: this.state.Occassion,
-        Date: this.state.Date,
-        CostPerPerson: this.state.CostPerPerson,
-        NoGuests: this.state.NoGuests
+            Name: this.state.Name,
+            Occassion: this.state.Occassion,
+            Date: this.state.Date,
+            CostPerPerson: this.state.CostPerPerson,
+            NoGuests: this.state.NoGuests
         }
+
+        //Posts information to link provided
         axios.post('http://localhost:4000/api/booking', newBooking)
-        .then((res)=>{
-        console.log(res);
-        })
-        .catch((err)=>{
-            console.log(err);
-        });
+            .then((res) => {
+                console.log(res);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
     }
 
+    //Displays form 
     render() {
         return (
-            <div className='App'>
-
+            <div className='App' style={{ margin: "50px 200px" }}>
+                <h1 className="display-4">Book your event with us today</h1>
                 <form onSubmit={this.onSubmit}>
                     <div className="form-group">
-                        <label>Name:</label>
                         <input type='text'
                             className='form-control'
                             value={this.state.Name}
-                            onChange={this.onChangeName}></input>
+                            onChange={this.onChangeName} placeholder="Name"></input>
                     </div>
                     <div className="form-group">
-                        <label>Occassion:</label>
+
                         <input type='text'
                             className='form-control'
                             value={this.state.Occassion}
-                            onChange={this.onChangeOccassion}></input>
+                            onChange={this.onChangeOccassion} placeholder="Occassion"></input>
                     </div>
                     <div className="form-group">
-                        <label>Date:</label>
+
                         <input type='text'
                             className='form-control'
                             value={this.state.Date}
-                            onChange={this.onChangeDate}></input>
+                            onChange={this.onChangeDate} placeholder="Date DD/MM/YY"></input>
                     </div>
                     <div className="form-group">
-                        <label>Cost Per Person: €</label>
+
                         <input type='text'
                             className='form-control'
                             value={this.state.CostPerPerson}
-                            onChange={this.onChangeCostPerPerson}></input>
+                            onChange={this.onChangeCostPerPerson} placeholder="Cost Per Person"></input>
                     </div>
                     <div className="form-group">
-                        <label>No of Guests:</label>
+
                         <input type='text'
                             className='form-control'
                             value={this.state.NoGuests}
-                            onChange={this.onChangeNoGuests}></input>
+                            onChange={this.onChangeNoGuests} placeholder="No. of Guests"></input>
                     </div>
                     <div className="form-group">
                         <input type='submit'
                             value='Add Booking'
-                            className="btn btn-primary"></input>
+                            className="btn" style={{backgroundColor: '#B9321C', color: 'white'}}></input>
                     </div>
                 </form>
+
+                <Carousel>
+                    <Carousel.Item>
+                        <img
+                            className="d-block w-100"
+                            src={bar} width="340" height="360" fluid />
+                    </Carousel.Item>
+                    <Carousel.Item>
+                        <img
+                            className="d-block w-100"
+                            src={concert} width="340" height="360" fluid />
+                    </Carousel.Item>
+                    <Carousel.Item>
+                        <img
+                            className="d-block w-100"
+                            src={foodfest} width="250" height="360" fluid />
+                    </Carousel.Item>
+                </Carousel>
+
             </div>
+
+
         );
     }
 

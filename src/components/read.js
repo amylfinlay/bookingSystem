@@ -47,7 +47,7 @@ export class Read extends React.Component {
         return (
             <div>
                 {/**Displays text */} 
-                <h1>View our upcoming events...</h1>
+                <h1 className="display-4">View our Upcoming Events...</h1>
                 <Booking booking={this.state.booking} ReloadData={this.ReloadData}></Booking>
             </div>
         );

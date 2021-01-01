@@ -30,23 +30,23 @@ export class Edit extends React.Component {
     }
 
     //life cycle hook and async function
-    componentDidMount(){
+    componentDidMount() {
         console.log(this.props.match.params.id);
 
-        axios.get('http://localhost:4000/api/booking/'+this.props.match.params.id)
-        .then(response =>{
-            this.setState({
-            _id: response.data._id,
-            Name: response.data.Name,
-            Occassion: response.data.Occassion,
-            Date: response.data.Date,
-            CostPerPerson: response.data.CostPerPerson,
-            NoGuests: response.data.NoGuests
+        axios.get('http://localhost:4000/api/booking/' + this.props.match.params.id)
+            .then(response => {
+                this.setState({
+                    _id: response.data._id,
+                    Name: response.data.Name,
+                    Occassion: response.data.Occassion,
+                    Date: response.data.Date,
+                    CostPerPerson: response.data.CostPerPerson,
+                    NoGuests: response.data.NoGuests
+                })
             })
-        })
-        .catch((error)=>{
-            console.log(error);
-        });
+            .catch((error) => {
+                console.log(error);
+            });
     }
 
     onChangeName(e) {
@@ -55,25 +55,25 @@ export class Edit extends React.Component {
         });
     }
 
-    onChangeOccassion(e){
+    onChangeOccassion(e) {
         this.setState({
             Occassion: e.target.value
         });
     }
 
-    onChangeDate (e){
+    onChangeDate(e) {
         this.setState({
             Date: e.target.value
         });
     }
 
-    onChangeCostPerPerson (e){
+    onChangeCostPerPerson(e) {
         this.setState({
             CostPerPerson: e.target.value
         });
     }
 
-    onChangeNoGuests (e){
+    onChangeNoGuests(e) {
         this.setState({
             NoGuests: e.target.value
         });
@@ -81,65 +81,60 @@ export class Edit extends React.Component {
 
     onSubmit(e) {
         e.preventDefault();
-        alert("Name: "+this.state.Name +" " +this.state.Occassion+ " "+this.state.Date+" "+this.state.CostPerPerson+
-        " "+this.state.NoGuests);
+        alert("Name: " + this.state.Name + " " + this.state.Occassion + " " + this.state.Date + " " + this.state.CostPerPerson +
+            " " + this.state.NoGuests);
 
         const newBooking = {
-        Name: this.state.Name,
-        Occassion: this.state.Occassion,
-        Date: this.state.Date,
-        CostPerPerson: this.state.CostPerPerson,
-        NoGuests: this.state.NoGuests,
-        _id: this.state._id
+            Name: this.state.Name,
+            Occassion: this.state.Occassion,
+            Date: this.state.Date,
+            CostPerPerson: this.state.CostPerPerson,
+            NoGuests: this.state.NoGuests,
+            _id: this.state._id
         }
 
-        axios.put('http://localhost:4000/api/booking/'+this.state._id, newBooking)
-        .then(res =>{
-            console.log(res.data)
-        })
-        .catch();
+        axios.put('http://localhost:4000/api/booking/' + this.state._id, newBooking)
+            .then(res => {
+                console.log(res.data)
+            })
+            .catch();
 
     }
 
     render() {
         return (
-            <div className='App'>
-
+            <div className='App' style={{ margin: "50px 200px" }}>
+                <h1 className="display-4">Edit your event...</h1>
                 <form onSubmit={this.onSubmit}>
                     <div className="form-group">
-                        <label>Name:</label>
                         <input type='text'
                             className='form-control'
                             value={this.state.Name}
-                            onChange={this.onChangeName}></input>
+                            onChange={this.onChangeName} style={{color: "red"}}></input>
                     </div>
                     <div className="form-group">
-                        <label>Occassion:</label>
                         <input type='text'
                             className='form-control'
                             value={this.state.Occassion}
-                            onChange={this.onChangeOccassion}></input>
+                            onChange={this.onChangeOccassion} style={{color: "red"}}></input>
                     </div>
                     <div className="form-group">
-                        <label>Date:</label>
                         <input type='text'
                             className='form-control'
                             value={this.state.Date}
-                            onChange={this.onChangeDate}></input>
+                            onChange={this.onChangeDate} style={{color: "red"}}></input>
                     </div>
                     <div className="form-group">
-                        <label>Cost Per Person: €</label>
                         <input type='text'
                             className='form-control'
                             value={this.state.CostPerPerson}
-                            onChange={this.onChangeCostPerPerson}></input>
+                            onChange={this.onChangeCostPerPerson} style={{color: "red"}}></input>
                     </div>
                     <div className="form-group">
-                        <label>No of Guests:</label>
                         <input type='text'
                             className='form-control'
                             value={this.state.NoGuests}
-                            onChange={this.onChangeNoGuests}></input>
+                            onChange={this.onChangeNoGuests} style={{color: "red"}}></input>
                     </div>
                     <div className="form-group">
                         <input type='submit'

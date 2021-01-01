@@ -1,7 +1,7 @@
 /**
  * Name: Amy Finlay
  * ID: G00360784
- * Booking
+ * Booking 
  */
 
 import React from 'react';
@@ -12,7 +12,7 @@ export class Booking extends React.Component {
 
     render() {
         return this.props.booking.map( (booking)=> {
-            return <BookingRef booking={booking} ReloadData={this.props.ReloadData}></BookingRef>
+            return <BookingRef booking={booking} ReloadData={this.props.ReloadData}></BookingRef> 
         })
     }
 
