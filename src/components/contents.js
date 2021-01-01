@@ -12,6 +12,7 @@ import Container from 'react-bootstrap/Container';
 import Testimonials from './testimonials.js';
 import drinks from './images/drinks.jpg';
 import wedding from './images/wedding.jpg';
+import header from './images/header.jpg';
 
 
 //Creates header class and extends into component
@@ -21,7 +22,10 @@ export class Contents extends React.Component {
     render() {
         return (
             <div>
-                <div className="jumbotron">
+                <div>
+                <img style={{ width: "70%", height:"auto"}} src={header} fluid/>
+                </div>
+                    <div className="jumbotron">
                     <h1 className="display-4">Events Planning Galway</h1>
                     <p className="lead">Planning an event?</p>
                     <p>Book with us to plan your next event. We cater for weddings, festivals, parties and any other celebrations.</p>

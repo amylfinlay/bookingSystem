@@ -26,11 +26,11 @@ class App extends Component {
         <div className="App">
           {/**Navbar displayed*/}
           <Navbar bg="dark" variant="dark">
-            <Navbar.Brand><img src={logo} width="190" height="50"/></Navbar.Brand>
+            <Navbar.Brand><img src={logo} width="190" height="50" /></Navbar.Brand>
             <Nav className="mr-auto">
-              <Nav.Link style={{fontSize: '20px'}} href="/">Home</Nav.Link>
-              <Nav.Link style={{fontSize: '20px'}} href="/read">Events</Nav.Link>
-              <Nav.Link style={{fontSize: '20px'}} href="/create">Book</Nav.Link>
+              <Nav.Link style={{ fontSize: '20px' }} href="/">Home</Nav.Link>
+              <Nav.Link style={{ fontSize: '20px' }} href="/read">Events</Nav.Link>
+              <Nav.Link style={{ fontSize: '20px' }} href="/create">Book</Nav.Link>
             </Nav>
           </Navbar>
 

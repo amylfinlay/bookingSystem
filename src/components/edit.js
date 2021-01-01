@@ -81,8 +81,7 @@ export class Edit extends React.Component {
 
     onSubmit(e) {
         e.preventDefault();
-        alert("Name: " + this.state.Name + " " + this.state.Occassion + " " + this.state.Date + " " + this.state.CostPerPerson +
-            " " + this.state.NoGuests);
+        alert("Your booking has been successfully changed");
 
         const newBooking = {
             Name: this.state.Name,
@@ -110,36 +109,36 @@ export class Edit extends React.Component {
                         <input type='text'
                             className='form-control'
                             value={this.state.Name}
-                            onChange={this.onChangeName} style={{color: "red"}}></input>
+                            onChange={this.onChangeName} style={{ color: "red" }}></input>
                     </div>
                     <div className="form-group">
                         <input type='text'
                             className='form-control'
                             value={this.state.Occassion}
-                            onChange={this.onChangeOccassion} style={{color: "red"}}></input>
+                            onChange={this.onChangeOccassion} style={{ color: "red" }}></input>
                     </div>
                     <div className="form-group">
                         <input type='text'
                             className='form-control'
                             value={this.state.Date}
-                            onChange={this.onChangeDate} style={{color: "red"}}></input>
+                            onChange={this.onChangeDate} style={{ color: "red" }}></input>
                     </div>
                     <div className="form-group">
                         <input type='text'
                             className='form-control'
                             value={this.state.CostPerPerson}
-                            onChange={this.onChangeCostPerPerson} style={{color: "red"}}></input>
+                            onChange={this.onChangeCostPerPerson} style={{ color: "red" }}></input>
                     </div>
                     <div className="form-group">
                         <input type='text'
                             className='form-control'
                             value={this.state.NoGuests}
-                            onChange={this.onChangeNoGuests} style={{color: "red"}}></input>
+                            onChange={this.onChangeNoGuests} style={{ color: "red" }}></input>
                     </div>
                     <div className="form-group">
                         <input type='submit'
                             value='Edit Booking'
-                            className="btn btn-primary"></input>
+                            className="btn" style={{ backgroundColor: '#B9321C', color: 'white' }}></input>
                     </div>
                 </form>
             </div>

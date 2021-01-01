@@ -11,8 +11,8 @@ import { BookingRef } from './bookingRef'
 export class Booking extends React.Component {
 
     render() {
-        return this.props.booking.map( (booking)=> {
-            return <BookingRef booking={booking} ReloadData={this.props.ReloadData}></BookingRef> 
+        return this.props.booking.map((booking) => {
+            return <BookingRef booking={booking} ReloadData={this.props.ReloadData}></BookingRef>
         })
     }
 
