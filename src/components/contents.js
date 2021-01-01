@@ -13,7 +13,7 @@ import Testimonials from './testimonials.js';
 import drinks from './images/drinks.jpg';
 import wedding from './images/wedding.jpg';
 import header from './images/header.jpg';
-
+import dj from './images/dj.jpg';
 
 //Creates header class and extends into component
 export class Contents extends React.Component {
@@ -55,6 +55,18 @@ export class Contents extends React.Component {
                         </Col>
                         <Col>
                             <img src={drinks} width="500px" height="300px" />
+                        </Col>
+                    </Row>
+                    <Row>
+                    <Col>
+                            <img src={dj} width="500px" height="300px" />
+                        </Col>
+                        <Col style={{ margin: "70px 20px" }}>
+                            <p className="lead"><b>What do we supply?</b></p>
+                            <p className="lead">We will organize one of experienced Djs, that will play the very best music for your 
+                            event. We will cater for food, drinks and provide you with our top quality waiting staff. The stress will be
+                            taken from your events.
+                                </p>
                         </Col>
                     </Row>
                 </Container>

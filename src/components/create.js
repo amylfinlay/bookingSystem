@@ -103,7 +103,7 @@ export class Create extends React.Component {
                             id='validation'
                             required
                             value={this.state.Name}
-                            onChange={this.onChangeName} placeholder="Name"></input>
+                            onChange={this.onChangeName} placeholder="Your Name/Company Name"></input>
                     </div>
 
                     <div className="form-group">
@@ -115,15 +115,15 @@ export class Create extends React.Component {
                             value={this.state.Occassion}
                             onChange={this.onChangeOccassion} placeholder="Occassion"></input>
                     </div>
-
+                    {/**inputs date selector */}
                     <div className="form-group">
-                        <input type='text'
+                        <input type='date'
                             className='form-control'
                             name='validation'
                             id='validation'
                             required
                             value={this.state.Date}
-                            onChange={this.onChangeDate} placeholder="Date DD/MM/YY"></input>
+                            onChange={this.onChangeDate} placeholder="DD/MM/YY"></input>
                     </div>
                     <div className="form-group">
                         <input type='text'
