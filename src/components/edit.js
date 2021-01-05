@@ -106,30 +106,35 @@ export class Edit extends React.Component {
                 <h1 className="display-4">Edit your event...</h1>
                 <form onSubmit={this.onSubmit}>
                     <div className="form-group">
+                        <p className="lead" style={{textAlign: "left"}}>Your Name/Company Name</p>
                         <input type='text'
                             className='form-control'
                             value={this.state.Name}
                             onChange={this.onChangeName} style={{ color: "red" }}></input>
                     </div>
                     <div className="form-group">
+                    <p className="lead" style={{textAlign: "left"}}>Occassion</p>
                         <input type='text'
                             className='form-control'
                             value={this.state.Occassion}
                             onChange={this.onChangeOccassion} style={{ color: "red" }}></input>
                     </div>
                     <div className="form-group">
+                    <p className="lead" style={{textAlign: "left"}}>Date</p>
                         <input type='text'
                             className='form-control'
                             value={this.state.Date}
                             onChange={this.onChangeDate} style={{ color: "red" }}></input>
                     </div>
                     <div className="form-group">
+                    <p className="lead" style={{textAlign: "left"}}>Cost Per Person</p>
                         <input type='text'
                             className='form-control'
                             value={this.state.CostPerPerson}
                             onChange={this.onChangeCostPerPerson} style={{ color: "red" }}></input>
                     </div>
                     <div className="form-group">
+                    <p className="lead" style={{textAlign: "left"}}>No. of Guests</p>
                         <input type='text'
                             className='form-control'
                             value={this.state.NoGuests}
