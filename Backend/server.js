@@ -14,6 +14,7 @@ app.use(function(req, res, next) {
     "Origin, X-Requested-With, Content-Type, Accept"); 
     next(); });
 
+//Lines for configuration to show where build and static folder is located
 app.use(express.static(path.join(__dirname, '../build')));
 app.use('/static', express.static(path.join(__dirname, 'build//static')));
 
@@ -90,6 +91,7 @@ app.post('/api/booking', (req, res)=>{
     res.send('Booking Confirmed');
 })
 
+//All other routes sent to index.html
 app.get('*', (req,res)=>{
     res.sendFile(path.join(__dirname+'/../build/index.html'));
 })
